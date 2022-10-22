@@ -59,6 +59,7 @@ provider "aws" {
 ```
 
 **Variables:**
+variables are common values that can be references elsewhere
 
 - `variables.tf`
 
@@ -67,9 +68,11 @@ variable "location" { }
 ```
 
 **terraform.tfvars:**
+terraform.tfvars holds the common values, is referrenced in variables.tf
 
+```
 location = "centralus"
-
+```
 
 **Backend:**
 
@@ -78,6 +81,7 @@ location = "centralus"
 
 - `az login --use-device-code`
 - `az account set --subscription ""` if on more than 1 subscription
+
 
 
 ---
