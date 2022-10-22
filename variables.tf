@@ -8,3 +8,7 @@ variable "location" {
 variable "resource_group_name" {
   description = "The name of the resource group."
 }
+
+variable "environment" {
+  description = "The name of the environment that is being deployed"
+}
