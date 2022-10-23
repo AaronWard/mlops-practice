@@ -1,9 +1,7 @@
 # mlops-practice
 Practice repo for MLOps on Azure using terraform. 
 
-### Terraform
-
-
+### Basic Terraform Cheatsheet
 
 **Basic commands:**
 - `terraform init`
@@ -59,7 +57,7 @@ provider "aws" {
 ```
 
 **Variables:**
-variables are common values that can be references elsewhere
+Variables are common values that can be declared and referenced elsewhere
 
 - `variables.tf`
 
@@ -74,21 +72,53 @@ terraform.tfvars holds the common values, is referrenced in variables.tf
 location = "centralus"
 ```
 
-**Backend:**
+**Statefile:**
 
+- Terraform statefile only keeps readings of what it did last time.
+- `terraform.tfstate` (Make sure it's kept in the `.gitignore`)
+- `terraform destroy` can only destroy resources it created, by looking in the statefile. 
+
+
+- `terraform.tfstate.backup` is a backup of the statefile, you can use this to undo a `destroy`-
+<!-- **Backend:** -->
+
+**Terraform Modules:**
+- Way to package up terraform code to be used by other people.
+- Directory with tf files in it.
+
+```
+module "name" {
+  source = "./some_path"
+  servers = 5
+}
+```
+
+**Terraform graph:**
+
+-  `terraform graph | dot -Tsvg > graph.svg`
+
+
+---
 
 ### Azure CLI
 
 - `az login --use-device-code`
 - `az account set --subscription ""` if on more than 1 subscription
+- `az ad sp create-for-rbac --name aw-sp-1 --role Admin --scopes /subscriptions/df854c79-25cc-463f-9b9d-b5c918678a91`
+  - Take the output and add it as secrets in the github repo. This will be references in the workflow file.
 
 ## Github Setup
 - Add Terraform Workflow in actions
 - From your Terraform Cloud User Settings, click on Tokens and generate an API token named GitHub Actions.
 - Add the token to your Github repository as a secret. Name the secret `TF_API_TOKEN.`
+- set `on` to `workload_dispatch`
+- run to check connectivity and provisioning of resources to your Azure subscription.
+
+
 
 ---
 ### Links
 
 - [IaC Overview](https://www.crowdstrike.com/cybersecurity-101/infrastructure-as-code-iac/?utm_campaign=cloudsecurity&utm_content=c4c_cloud_us_en_nb_low&utm_medium=sem&utm_source=goog&utm_term=iac&gclid=Cj0KCQjwxveXBhDDARIsAI0Q0x2p_z69E8H4h6dUhC9OM7I3SePsfCxyifrOuoHKY-bx7iw3WYReaFQaApVdEALw_wcB)
-- 
+- [terraform-docs](https://terraform-docs.io/user-guide/introduction/)
+- [Managing your machine learning infrastructure as code with Terraform](https://www.jeremyjordan.me/terraform/)
