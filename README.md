@@ -1,13 +1,8 @@
 # mlops-practice
 Practice repo for MLOps on Azure using terraform. 
 
-<<<<<<< HEAD
 [![Terraform](https://github.com/AaronWard/mlops-practice/actions/workflows/terraform.yml/badge.svg?event=workflow_dispatch)](https://github.com/AaronWard/mlops-practice/actions/workflows/terraform.yml)
 
-
-=======
-### Basic Terraform Cheatsheet
->>>>>>> 952e25e4490126ced98feb7d8c16644ac792935c
 
 ### Terraform Concepts:
 
@@ -105,10 +100,14 @@ module "name" {
 
 -  `terraform graph | dot -Tsvg > graph.svg`
 
+**Terraform Import:**
+
+- Let's say that you have created any resources in Azure Cloud by some other means(manually or using azure CLI) before you started using Terraform. You can import them under Terraform management instead of destroying and re-creating them from scratch. The `terraform import` command can be used to import existing resources. 
+- only one resource at a time.
 
 ---
 
-# How-To':
+# How-To's:
 
 
 ### Azure CLI

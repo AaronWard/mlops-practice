@@ -11,3 +11,8 @@ resource "azurerm_virtual_network" "vnet" {
   dns_servers         = []
 }
 
+resource "azurerm_network_security_group" "aw-nsg" {
+  name                = "nsg"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = var.location
+}
