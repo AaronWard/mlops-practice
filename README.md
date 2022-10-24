@@ -5,7 +5,7 @@ Practice repo for MLOps on Azure using terraform.
 
 
 
-### Terraform
+### Terraform Concepts:
 
 **Basic commands:**
 - `terraform init`
@@ -79,15 +79,26 @@ location = "centralus"
 **Backend:**
 
 
+# How-To':
+
+
 ### Azure CLI
 
 - `az login --use-device-code`
 - `az account set --subscription ""` if on more than 1 subscription
 
-## Github Setup
+### Github Setup
 - Add Terraform Workflow in actions
 - From your Terraform Cloud User Settings, click on Tokens and generate an API token named GitHub Actions.
 - Add the token to your Github repository as a secret. Name the secret `TF_API_TOKEN.`
+
+
+
+### Terraform Docs
+
+- `terraform-docs markdown table   --output-file terraform_docs.md   --output-mode inject .`
+
+
 
 ---
 ### Links
