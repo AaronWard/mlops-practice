@@ -1,9 +1,11 @@
 # mlops-practice
 Practice repo for MLOps on Azure using terraform. 
 
+[![Terraform](https://github.com/AaronWard/mlops-practice/actions/workflows/terraform.yml/badge.svg?event=workflow_dispatch)](https://github.com/AaronWard/mlops-practice/actions/workflows/terraform.yml)
+
+
+
 ### Terraform
-
-
 
 **Basic commands:**
 - `terraform init`
@@ -91,4 +93,3 @@ location = "centralus"
 ### Links
 
 - [IaC Overview](https://www.crowdstrike.com/cybersecurity-101/infrastructure-as-code-iac/?utm_campaign=cloudsecurity&utm_content=c4c_cloud_us_en_nb_low&utm_medium=sem&utm_source=goog&utm_term=iac&gclid=Cj0KCQjwxveXBhDDARIsAI0Q0x2p_z69E8H4h6dUhC9OM7I3SePsfCxyifrOuoHKY-bx7iw3WYReaFQaApVdEALw_wcB)
-- 
