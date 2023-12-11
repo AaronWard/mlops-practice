@@ -1,0 +1,18 @@
+name: Trigger Agents
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */4 * * *' # Every 4 hours
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: 'Trigger Agents'
+      run: |
+        # Use Azure CLI or other means to trigger the function
+        # Example: Invoke the Azure Function using HTTP
+        FUNCTION_URL=$(az functionapp function show --function-name <function-name> --name ${{ secrets.APP_NAME }} --resource-group ${{ secrets.RESOURCE_GROUP_NAME }} --query invokeUrlTemplate --output tsv)
+        curl -X POST $FUNCTION_URL
