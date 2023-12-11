@@ -1,7 +1,7 @@
-variable "azure_subscription_id" { 
+variable "azure_subscription_id" {
   description = "The name of the resource group."
 }
-variable "location" { 
+variable "location" {
   description = "The location to deploy resources to."
 }
 
