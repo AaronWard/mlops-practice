@@ -26,31 +26,27 @@ resource "azurerm_storage_account" "storage" {
 }
 
 
-resource "azurerm_app_service_plan" "app_service_plan" {
+resource "azurerm_service_plan" "app_service_plan" {
   name                = "appserviceplan-${var.environment}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  kind                = "FunctionApp"
-  reserved            = true // Required for Linux plans
-
-  sku {
-    tier = "Dynamic"
-    size = "Y1"
-  }
+  os_type             = "Linux"
+  sku_name            = "P1v2"
 }
 
-resource "azurerm_function_app" "function_app" {
-  name                       = "functionapp-${var.environment}"
-  location                   = azurerm_resource_group.rg.location
-  resource_group_name        = azurerm_resource_group.rg.name
-  app_service_plan_id        = azurerm_app_service_plan.app_service_plan.id
+resource "azurerm_linux_function_app" "function_app" {
+  name                = "functionapp-${var.environment}"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  service_plan_id     = azurerm_service_plan.app_service_plan.id
+
   storage_account_name       = azurerm_storage_account.storage.name
   storage_account_access_key = azurerm_storage_account.storage.primary_access_key
-  os_type                    = "linux"
-  version                    = "~3"
 
   site_config {
-    linux_fx_version = "PYTHON|3.8"
+    application_stack {
+      python_version = "3.8"
+    }
   }
 
   app_settings = {
@@ -61,7 +57,6 @@ resource "azurerm_function_app" "function_app" {
     type = "SystemAssigned"
   }
 }
-
 
 resource "azurerm_key_vault" "key_vault" {
   name                        = "kv-${var.resource_group_name}-${var.environment}"
@@ -95,7 +90,7 @@ resource "azurerm_log_analytics_workspace" "la_workspace" {
 
 resource "azurerm_monitor_diagnostic_setting" "app_insights_diag" {
   name                       = "diagsetting-${var.environment}"
-  target_resource_id         = azurerm_function_app.function_app.id
+  target_resource_id         = azurerm_linux_function_app.function_app.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.la_workspace.id
 
   enabled_log {
