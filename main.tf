@@ -68,7 +68,7 @@ resource "azurerm_key_vault" "key_vault" {
   location                    = azurerm_resource_group.rg.location
   resource_group_name         = azurerm_resource_group.rg.name
   tenant_id                   = data.azurerm_client_config.current.tenant_id
-  soft_delete_retention_days  = 0
+  soft_delete_retention_days  = 90
   purge_protection_enabled    = false
 
   sku_name = "standard"
@@ -86,14 +86,20 @@ resource "azurerm_application_insights" "app_insights" {
   application_type    = "web"
 }
 
+resource "azurerm_log_analytics_workspace" "la_workspace" {
+  name                = "example-workspace"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "PerGB2018"
+}
+
 resource "azurerm_monitor_diagnostic_setting" "app_insights_diag" {
   name                       = "diagsetting-${var.environment}"
   target_resource_id         = azurerm_function_app.function_app.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.la_workspace.id
 
-  log {
+  enabled_log {
     category = "FunctionAppLogs"
-    enabled  = true
   }
 
   metric {
