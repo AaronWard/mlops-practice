@@ -18,7 +18,7 @@ resource "azurerm_network_security_group" "aw-nsg" {
 }
 
 resource "azurerm_storage_account" "storage" {
-  name                     = "appstorage${var.environment}"
+  name                     = "appstorage${var.environment}2"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = var.location
   account_tier             = "Standard"
