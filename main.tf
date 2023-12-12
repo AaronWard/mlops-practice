@@ -3,11 +3,6 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-resource "azurerm_resource_group" "aw-rg-2-dev" {
-  name     = "aw-rg-2-dev"
-  location = var.location
-}
-
 resource "azurerm_virtual_network" "vnet" {
   name                = "vnet"
   location            = var.location
