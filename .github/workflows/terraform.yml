@@ -76,7 +76,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
-    - name: Terraform Init
+    - name: Terraform Init 
       run: terraform init
 
     - name: Terraform Format Check
