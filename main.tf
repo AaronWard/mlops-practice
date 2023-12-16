@@ -18,7 +18,7 @@ resource "azurerm_network_security_group" "aw-nsg" {
 }
 
 resource "azurerm_storage_account" "storage" {
-  name                     = "appstorage${var.environment}2"
+  name                     = "awazappstorage${var.environment}2"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = var.location
   account_tier             = "Standard"
@@ -35,7 +35,7 @@ resource "azurerm_service_plan" "app_service_plan" {
 }
 
 resource "azurerm_linux_function_app" "function_app" {
-  name                = "functionapp-${var.environment}"
+  name                = "awazfunctionapp-${var.environment}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   service_plan_id     = azurerm_service_plan.app_service_plan.id
