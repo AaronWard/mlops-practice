@@ -6,7 +6,12 @@
 *.tfstate.*
 
 
-.vscode
+.vscode/
+**/.vscode/
+*/.vscode/
+
+*/.venv
+**/.venv
 
 # Crash log files
 crash.log

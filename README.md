@@ -140,3 +140,14 @@ module "name" {
 - [IaC Overview](https://www.crowdstrike.com/cybersecurity-101/infrastructure-as-code-iac/?utm_campaign=cloudsecurity&utm_content=c4c_cloud_us_en_nb_low&utm_medium=sem&utm_source=goog&utm_term=iac&gclid=Cj0KCQjwxveXBhDDARIsAI0Q0x2p_z69E8H4h6dUhC9OM7I3SePsfCxyifrOuoHKY-bx7iw3WYReaFQaApVdEALw_wcB)
 - [terraform-docs](https://terraform-docs.io/user-guide/introduction/)
 - [Managing your machine learning infrastructure as code with Terraform](https://www.jeremyjordan.me/terraform/)
+
+
+---
+
+## Deploying Azure Functions
+
+```
+zip -r test_app.zip ./test_app/
+az functionapp deployment source config-zip   -g aw-rg-2-dev   -n awazfunctionapp-dev   --src ./test_app.zip
+```
+https://learn.microsoft.com/en-us/answers/questions/1401268/azure-functions-with-fastapi-and-openai-streaming
