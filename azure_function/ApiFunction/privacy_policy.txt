@@ -1,0 +1,42 @@
+Privacy Policy for Amplify
+
+Last Updated: December 2023
+
+1. Introduction
+
+Welcome to Amplify. We are committed to respecting and protecting the privacy of all our users. This Privacy Policy outlines our practices concerning the collection, use, and protection of personal information.
+
+2. Information Collection
+
+We collect information when users interact with our Large Language Model (LLM) agent application. The types of information collected include:
+
+Chat Text Information: Records of conversations between users and the AI agent.
+User IDs: Unique identifiers for each user.
+3. Use of Information
+
+The information we collect is used primarily for educational purposes to enhance user experience with our LLM agent application. It helps us to improve our service and understand user interactions.
+
+4. Data Security
+
+To protect your personal information, we employ robust security measures. These include:
+
+Hosting our services on a secure cloud-based API.
+Implementing role-based access control measures to limit data access.
+Utilizing Azure Key Vault for secure management of encryption keys.
+5. No Third-Party Data Sharing
+
+We do not share your personal data with third parties. Your information is solely used for the purposes stated within this policy.
+
+6. User Rights
+
+Please note that we do not currently offer specific rights for users to access, correct, delete, or transfer their data.
+
+7. Contact Information
+
+For any questions or concerns regarding your privacy or this policy, please contact us.
+
+8. Changes to This Privacy Policy
+
+We may update this Privacy Policy periodically. We encourage users to review this policy regularly to stay informed about how we are protecting the personal information we collect.
+
+This privacy policy is a starting point and may need adjustments to fully comply with local laws and regulations, especially if you are serving a global audience. It's recommended to consult with a legal professional to ensure full compliance.
