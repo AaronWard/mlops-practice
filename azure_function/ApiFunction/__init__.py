@@ -1,8 +1,8 @@
-import azure.functions as func
-import fastapi
 import os
-app = fastapi.FastAPI()
+import fastapi
+import azure.functions as func
 
+app = fastapi.FastAPI()
 @app.get("/sample")
 async def index():
     return {
@@ -12,9 +12,9 @@ async def index():
 @app.get("/privacy_policy")
 async def privacy_policy():
     # Read privacy_policy.txt file
-    # with open('privacy_policy.txt', 'r') as file:
-    #     privacy_policy_content = file.read()
+    with open('./ApiFunction/privacy_policy.txt', 'r') as file:
+        privacy_policy_content = file.read()
 
     return {
-        "info": os.getcwd()
+        "info": privacy_policy_content
     }
