@@ -1,4 +1,5 @@
-azure-functions
-fastapi
-chromadb
-# pysqlite3-binary
+fastapi==0.105.0
+azure-functions==1.17.0
+chromadb==0.4.21
+sentence-transformers
+pysqlite3-binary
