@@ -1,2 +1,4 @@
 azure-functions
 fastapi
+chromadb
+# pysqlite3-binary
