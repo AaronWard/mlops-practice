@@ -17,7 +17,8 @@ app = FastAPI()
 print(os.getcwd())
 
 # Define the path to the ChromaDB SQLite file
-db_path = str(Path(os.getcwd(), "./ApiFunction/chromadb/chroma.sqlite3").expanduser())
+# db_path = str(Path(os.getcwd(), "./ApiFunction/chromadb/chroma.sqlite3").expanduser())
+db_path = "./ApiFunction/chromadb/"
 print(db_path)
 
 client = chromadb.PersistentClient(path=db_path)
@@ -27,8 +28,8 @@ print(collection_names)
 
 # Define the query function
 def query_vector_db(query_texts: List[str], n_results: int = 10, search_string: str = "") -> QueryResult:
-    collection_name = "autogen-discord"  # Replace with your collection name
-    embedding_model = "all-MiniLM-L6-v2"  # Example embedding model
+    collection_name = "autogen-discord"  
+    embedding_model = "all-MiniLM-L6-v2" 
 
     # Initialize embedding function
     embedding_function = SentenceTransformerEmbeddingFunction(embedding_model)
