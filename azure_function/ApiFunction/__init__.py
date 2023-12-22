@@ -1,12 +1,18 @@
 # Import necessary libraries
 import os
+import sys
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from typing import List
 import azure.functions as func
 
-from chromadb.api import ClientAPI as API
+try:
+    import pysqlite3 as sqlite3
+except ImportError:
+    import sqlite3
+sys.modules['sqlite3'] = sqlite3
 
+from chromadb.api import ClientAPI as API
 import chromadb
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 from chromadb.api.types import QueryResult
@@ -49,15 +55,17 @@ def query_vector_db(query_texts: List[str], n_results: int = 10, search_string: 
 # Define FastAPI endpoints
 @app.get("/sample")
 async def index():
-    return {"info": "Sample response"}
+    return {"info": "Sample "}
 
 @app.get("/query/{query_text}")
 async def query(query_text: str):
+    print(query_text)
     try:
-        # Query the ChromaDB database
         results = query_vector_db([query_text])
         return {"documents": results['documents']}
     except Exception as e:
+        print(e)
+
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/privacy_policy")

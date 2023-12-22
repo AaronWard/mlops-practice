@@ -1,6 +1,13 @@
 fastapi==0.105.0
 azure-functions==1.17.0
 chromadb==0.4.21
+pysqlite3-binary
 sentence-transformers
+
+
+# fastapi==0.85.1
+# azure-functions==1.17.0
+# chromadb==0.3.29
 # pysqlite3-binary
-pyautogen
+# uvicorn
+# sentence-transformers
