@@ -5,22 +5,18 @@
 *.tfstate
 *.tfstate.*
 
-
-.vscode/
 **/.vscode/
 */.vscode/
-
 */.venv
 **/.venv
-
 */venv
 **/venv
-
 */__pycache__/
 **/__pycache__/
-
 */chromadb
 **/chromadb
+**/.DS_Store
+*/.DS_Store
 
 # Crash log files
 crash.log

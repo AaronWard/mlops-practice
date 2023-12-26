@@ -20,28 +20,26 @@ from chromadb.api.types import QueryResult
 # Initialize FastAPI app
 app = FastAPI()
 
-print(os.getcwd())
-
-# Define the path to the ChromaDB SQLite file
-# db_path = str(Path(os.getcwd(), "./ApiFunction/chromadb/chroma.sqlite3").expanduser())
+# Define vars for ChromaDB SQLite 
+collection_name = "autogen-docs-qa"
+embedding_model = "all-MiniLM-L6-v2"
 db_path = "./ApiFunction/chromadb/"
-print(db_path)
 
-client = chromadb.PersistentClient(path=db_path)
+try:
+    client = chromadb.PersistentClient(path=db_path)
+except Exception as e:
+    raise Exception(f"Chroma client couldn't be instantiated: {e}")
+
 collection_names = client.list_collections()
-print(collection_names)
+embedding_function = SentenceTransformerEmbeddingFunction(embedding_model)
 
+print(db_path)
+print(collection_names)
+print(embedding_model)
 
 # Define the query function
 def query_vector_db(query_texts: List[str], n_results: int = 10, search_string: str = "") -> QueryResult:
-    collection_name = "autogen-discord"  
-    embedding_model = "all-MiniLM-L6-v2" 
-
-    # Initialize embedding function
-    embedding_function = SentenceTransformerEmbeddingFunction(embedding_model)
     query_embeddings = embedding_function(query_texts)
-
-    # Fetch collection
     collection = client.get_collection(collection_name)
 
     # Query collection
@@ -65,18 +63,18 @@ async def query(query_text: str):
         return {"documents": results['documents']}
     except Exception as e:
         print(e)
-
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/privacy_policy")
 async def privacy_policy():
     try:
-        with open('./ApiFunction/privacy_policy.txt', 'r') as file:
+        # Use a more secure method to join paths
+        privacy_policy_path = Path(__file__).parent / 'privacy_policy.txt'
+        with privacy_policy_path.open('r') as file:
             privacy_policy_content = file.read()
         return {"info": privacy_policy_content}
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Privacy policy not found.")
-
 
 if __name__ == "__main__":
     import uvicorn

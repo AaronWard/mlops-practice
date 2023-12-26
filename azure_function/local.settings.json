@@ -2,6 +2,6 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "python",
-    "AzureWebJobsFeatureFlags": "EnableWorkerIndexing"
+    "FUNCTIONS_EXTENSION_VERSION": "~4"
   }
 }
